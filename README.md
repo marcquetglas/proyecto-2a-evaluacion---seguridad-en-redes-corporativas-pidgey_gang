@@ -45,8 +45,11 @@ Los valores de estas variables de entorno se establecen en /etc/apache2/envvars
 - export APACHE_RUN_USER=<usuario>
 - export APACHE_RUN_GROUP=<grupo>
 ```
-Por ejemplo www-data.
+Por ejemplo www-data. Lo normal es que ya tengamos configurados estos valores con el Usuario y Grupo www-data, pero debemos verificarlo siempre.
 
 De esta manera al arrancar el servidor web lo hara con el usuario que le hayamos indicado, ya que si arrancamos el servidor con usuario privilegiado como root, corremos el riesgo de, ante un posible ataque exitoso, otorgar permisos de administrador al atacante.
 
 Con un *ps auwwfx | grep apache* podemos ver el usuario que esta ejecutando el servicio Apache.
+
+### Ocultación de versiones
+
