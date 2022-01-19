@@ -1,4 +1,4 @@
-# Hardening Ubuntu
+# Hardening Apache
 
 ## Instalación Apache
 
