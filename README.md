@@ -23,15 +23,15 @@ rm index.html
 
 Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros que nos permiten configurar tanto de forma global como específica nuestro servidor:
 
-apache2.conf: Configuración principal des de donde se cargarán todos los ficheros necesarios cuando se inicie el servidor web.
+**apache2.conf:** Configuración principal des de donde se cargarán todos los ficheros necesarios cuando se inicie el servidor web.
 
 **ports.conf:** Determina los puertos que escucha para las conexiones entrantes.
 
-mods-available, conf-available, sites-available: Configuración específica para gestionar módulos, configuración global y hosts virtuales de forma separada.
+**mods-available, conf-available, sites-available:** Configuración específica para gestionar módulos, configuración global y hosts virtuales de forma separada.
 
-mods-enabled, conf-enabled, sites-enabled: Enlaces simbólicos desde *-available (mods, conf y sites).
+**mods-enabled, conf-enabled, sites-enabled:** Enlaces simbólicos desde *-available (mods, conf y sites).
 
-envvars: Contiene algunas variables de entorno usadas en apache2.conf.
+**envvars:** Contiene algunas variables de entorno usadas en apache2.conf.
 
 ### Usuarios y grupos
 
