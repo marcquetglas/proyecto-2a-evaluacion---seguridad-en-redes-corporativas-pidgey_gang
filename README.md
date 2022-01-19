@@ -25,7 +25,7 @@ Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros q
 
 apache2.conf: Configuración principal des de donde se cargarán todos los ficheros necesarios cuando se inicie el servidor web.
 
-ports.conf: Determina los puertos que escucha para las conexiones entrantes.
+**ports.conf:** Determina los puertos que escucha para las conexiones entrantes.
 
 mods-available, conf-available, sites-available: Configuración específica para gestionar módulos, configuración global y hosts virtuales de forma separada.
 
