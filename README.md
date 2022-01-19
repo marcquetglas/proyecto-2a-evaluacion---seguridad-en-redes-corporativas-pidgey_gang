@@ -4,6 +4,10 @@
 
 En la terminal de nuestra máquina con Ubuntu, ejecutamos los siguientes comandos:
 ```
-sudo apt-get update
-sudo apt-get install apache2
+apt-get update
+apt-get install apache2
+```
+Podemos comprobar que tenemos el servicio Apache funcionando con:
+```
+service apache2 status
 ```
