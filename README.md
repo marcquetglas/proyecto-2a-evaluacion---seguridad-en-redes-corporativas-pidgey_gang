@@ -36,9 +36,16 @@ Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros q
 ### Usuarios y grupos
 
 Tenemos que configurar un usuario y grupo no provilegiado para el servidor web editando el fichero /etc/apache2/apache2.conf y buscand la parte de "User" y "Group".
+```
 - User ${APACHE_RUN_USER}
 - Group ${APACHE_RUN_GROUP}
+```
 Los valores de estas variables de entorno se establecen en /etc/apache2/envvars
+```
 - export APACHE_RUN_USER=<usuario>
 - export APACHE_RUN_GROUP=<grupo>
+```
+Por ejemplo www-data.
+
 De esta manera al arrancar el servidor web lo hara con el usuario que le hayamos indicado, ya que si arrancamos el servidor con usuario privilegiado como root, corremos el riesgo de, ante un posible ataque exitoso, otorgar permisos de administrador al atacante.
+Con un *ps auwwfx | grep apache* podemos ver el usuario que esta ejecutando el servicio Apache.
