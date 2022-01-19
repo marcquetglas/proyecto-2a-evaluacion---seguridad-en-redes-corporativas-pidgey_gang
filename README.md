@@ -48,4 +48,5 @@ Los valores de estas variables de entorno se establecen en /etc/apache2/envvars
 Por ejemplo www-data.
 
 De esta manera al arrancar el servidor web lo hara con el usuario que le hayamos indicado, ya que si arrancamos el servidor con usuario privilegiado como root, corremos el riesgo de, ante un posible ataque exitoso, otorgar permisos de administrador al atacante.
+
 Con un *ps auwwfx | grep apache* podemos ver el usuario que esta ejecutando el servicio Apache.
