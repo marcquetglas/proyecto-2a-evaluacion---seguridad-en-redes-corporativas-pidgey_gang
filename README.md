@@ -158,6 +158,18 @@ Su flexibilidad de configuración les proporciona alta probabilidad de usos inco
 
 ### ¿Cómo podemos evitar el hotlinking? 
 
+El hotlinking es una práctica empleada por propietarios de una página web para usar el contenido de otra página web, concretamente imágenes, vídeos o documentos alojados en la web de origen, sin pedir permiso, sin pagar licencias y empleando para ello el mínimo esfuerzo posible.
+
+Afortunadamente, existen diferentes maneras para prevenir el hotlinking de los contenidos de nuestra web.
+
++ Con un CDN que incluya Protección de Hotlinking
++ Permitiendo la Protección Hotlinking en Apache
++ Habilitar Protección de Hotlinking en NGINX
++ Plugins de WordPress que nos pueden ayudar
++ Deshabilitando Clic Derecho en WordPress
++ Renombrando archivos
++ En la configuración de nuestro cPanel
+
 #### Configuración HTTPS mediante Let's Encrypt o OpenSSL. Crea los certificados para que tu virtualHost sea seguro, y obligatoriamente los accesos sean por HTTPS
 
 ### Módulo "mod_securrity" ¿Qué es mod_security?
