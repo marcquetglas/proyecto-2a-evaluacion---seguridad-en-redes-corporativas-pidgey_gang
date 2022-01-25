@@ -172,7 +172,11 @@ Afortunadamente, existen diferentes maneras para prevenir el hotlinking de los c
 
 #### Configuración HTTPS mediante Let's Encrypt o OpenSSL. Crea los certificados para que tu virtualHost sea seguro, y obligatoriamente los accesos sean por HTTPS
 
-### Módulo "mod_securrity" ¿Qué es mod_security?
+### Módulo "mod_security" ¿Qué es mod_security?
+
+es un módulo de seguridad de Apache, actúa como firewall de aplicaciones web (WAF) y su trabajo es filtrar y bloquear las solicitudes HTTP sospechosas, pudiendo bloquear ataques de fuerza bruta, vulnerabilidades de cross scripting (XSS), ataques por inyección SQL (SQLi), etc.
+
+mod_security está activo en todos nuestros servidores Linux por defecto. Aunque no es posible deshabilitarlo completamente por razones de seguridad, este módulo permite añadir excepciones mediante el fichero .htaccess en el caso de que trate de un falso positivo.
 
 #### Realiza un ataque DoS mediante Metasploit (Slowloris) y comprueba que efectivamente el servidor está inaccesible
 
