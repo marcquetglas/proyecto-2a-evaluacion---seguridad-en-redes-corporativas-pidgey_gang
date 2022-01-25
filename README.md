@@ -1,6 +1,6 @@
-# Hardening Apache
+## Hardening Apache
 
-## Instalación Apache
+### Instalación Apache
 
 En la terminal de nuestra máquina con Ubuntu, ejecutamos los siguientes comandos:
 ```
@@ -19,7 +19,7 @@ cd /var/www/html
 rm index.html
 ```
 
-## Configuraciones globales
+### Configuraciones globales
 
 Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros que nos permiten configurar tanto de forma global como específica nuestro servidor:
 
@@ -33,7 +33,7 @@ Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros q
 
 **envvars:** Contiene algunas variables de entorno usadas en apache2.conf.
 
-### Usuarios y grupos
+#### Usuarios y grupos
 
 Tenemos que configurar un usuario y grupo no provilegiado para el servidor web editando el fichero /etc/apache2/apache2.conf y buscand la parte de "User" y "Group".
 ```
@@ -51,7 +51,7 @@ De esta manera al arrancar el servidor web lo hara con el usuario que le hayamos
 
 Con un *ps auwwfx | grep apache* podemos ver el usuario que esta ejecutando el servicio Apache.
 
-### Ocultación de versiones ¿Cuales son las fases de un ataque?
+#### Ocultación de versiones ¿Cuales son las fases de un ataque?
 
 + Reconocimiento: el atacante busca información sobre la empresa. Generalmente, empieza a investigar los datos de la organización publica en abierto para tratar de averiguar qué tecnologías utiliza e interactuar con el correo electrónico y las redes sociales.
 + Preparación: el ciberdelincuente prepara su ataque hacia un objetivo específico.
@@ -63,4 +63,38 @@ Con un *ps auwwfx | grep apache* podemos ver el usuario que esta ejecutando el s
 
 En definitiva, la mejor forma de romper esta cadena es la concienciación en la empresa, la formación del personal y contar con las soluciones de seguridad adecuadas. De esta manera se eliminará la vulnerabilidad y será mucho más segura.
 
+#### Exposición mínima de módulos
 
+En Apache, los módulos pueden estar compilados estáticamente o cargqados de forma dinámica.
+
+Un módulo es una extensión que añade funcionalidad a través de la configuración en Apache, concretamente añadiendo directivas propias del módulo.
+
+En instalaciones por defecto es habitual encontrar módulos activos que no se usan o no nos insteresan.
+
+Siempre es recomendable desactivar cualquier módulo que no esté en uso. Reducirá la carga y la superfície de exposición de un ataque.
+
+Para activar o desactivar módulos usaremos en línia de comandos las utilidades a2dismod y a2enmod añadiendo como argumento el nombre del módulo.
+
+Para consultar la lista de módulos, ya sean estáticos o dinámicos, disponemos en línia de comandos de apache2ctl con el argumento -M mayúscula. Seguido de recargar la configuración con "sudo systemctl reload apache2" para que los cambios aplicatos tengan efecto.
+
+### Creación de virtualhost
+
+#### Configuración múltiple y contexto: directiva options
+
+#### Restringiendo acceso al contenido: directiva Auth y Require. Aplica la configuración para autenticar el acceso mediante digest a uno de los directorios de tu virtualHost
+
+#### Ficheros .htaccess ¿Para qué sirven?
+
+### ¿Cómo podemos evitar el hotlinking? 
+
+#### Configuración HTTPS mediante Let's Encrypt o OpenSSL. Crea los certificados para que tu virtualHost sea seguro, y obligatoriamente los accesos sean por HTTPS
+
+### Módulo "mod_securrity" ¿Qué es mod_security?
+
+#### Realiza un ataque DoS mediante Metasploit (Slowloris) y comprueba que efectivamente el servidor está inaccesible
+
+#### Clona e instala las reglas recomendadas OWASP. Habilita mod_security
+
+### Reglas para detectar SQLInjection
+
+### Realiza de nuevo el ataque DoS y comprueba que el servidor está accesible
