@@ -53,13 +53,13 @@ Con un *ps auwwfx | grep apache* podemos ver el usuario que esta ejecutando el s
 
 #### Ocultación de versiones ¿Cuales son las fases de un ataque?
 
-+ Reconocimiento: el atacante busca información sobre la empresa. Generalmente, empieza a investigar los datos de la organización publica en abierto para tratar de averiguar qué tecnologías utiliza e interactuar con el correo electrónico y las redes sociales.
-+ Preparación: el ciberdelincuente prepara su ataque hacia un objetivo específico.
-+ Distribución: en esta fase se produce la transmisión del ciberataque. De nuevo, la formación de los trabajadores y el conocimiento de estas técnicas es la mejor forma de prevenirlo.
-+ Explotación: el atacante compromete el equipoinfectado y su red. Esto lo suele conseguir explotando una vulnerabilidad para la que exista un parche de seguridad pero no esté operativo. Es importante contar con soluciones de seguridad y un antivirus actualizado para evitar que tu empresa quede expuesta.
-+ Instalación: el atacante instala el malware o roba las credenciales de la víctima, entre otras posibilidades. Implementar una correcta formación sobre el tema es la mejor formade evitarlo, así como las medidas técnicas que van desde la seguridad de la información, hasta la privacidad de los datos, pasando por los controles de acceso.
-+ Comando y control: durante esta, el atacante ya cuenta con el control del sistema. Puede llevar a cabop acciones maliciosas como robar información confidencial, extraer datos de acceso y capturas de pantalla, instalar programas y conocer aún más a la víctima y su red.
-+ Acciones sobre los objetivos: esta es la fase final, en la que el atacante consigue los datos que necesita y expande el ciberataque, iniciando a la vez el ciclo otra vez y repitiendo etapas.
++ **Reconocimiento:** el atacante busca información sobre la empresa. Generalmente, empieza a investigar los datos de la organización publica en abierto para tratar de averiguar qué tecnologías utiliza e interactuar con el correo electrónico y las redes sociales.
++ **Preparación:** el ciberdelincuente prepara su ataque hacia un objetivo específico.
++ **Distribución:** en esta fase se produce la transmisión del ciberataque. De nuevo, la formación de los trabajadores y el conocimiento de estas técnicas es la mejor forma de prevenirlo.
++ **Explotación:** el atacante compromete el equipoinfectado y su red. Esto lo suele conseguir explotando una vulnerabilidad para la que exista un parche de seguridad pero no esté operativo. Es importante contar con soluciones de seguridad y un antivirus actualizado para evitar que tu empresa quede expuesta.
++ **Instalación:** el atacante instala el malware o roba las credenciales de la víctima, entre otras posibilidades. Implementar una correcta formación sobre el tema es la mejor formade evitarlo, así como las medidas técnicas que van desde la seguridad de la información, hasta la privacidad de los datos, pasando por los controles de acceso.
++ **Comando y control:** durante esta, el atacante ya cuenta con el control del sistema. Puede llevar a cabop acciones maliciosas como robar información confidencial, extraer datos de acceso y capturas de pantalla, instalar programas y conocer aún más a la víctima y su red.
++ **Acciones sobre los objetivos:** esta es la fase final, en la que el atacante consigue los datos que necesita y expande el ciberataque, iniciando a la vez el ciclo otra vez y repitiendo etapas.
 
 En definitiva, la mejor forma de romper esta cadena es la concienciación en la empresa, la formación del personal y contar con las soluciones de seguridad adecuadas. De esta manera se eliminará la vulnerabilidad y será mucho más segura.
 
@@ -131,9 +131,9 @@ Los ficheros .htaccess que residen en drectorios proporcionan el mismo resultado
 
 #### Restringiendo acceso al contenido: directiva Auth y Require. Aplica la configuración para autenticar el acceso mediante digest a uno de los directorios de tu virtualHost
 
-+ Creamos un usuario y contraseña
++ **Creamos un usuario y contraseña**
     sodo htpasswd -c passwords albert
-+ Añadimos directivas Auth*
++ **Añadimos directivas Auth***
 ```
 <Directory /var/www/html/privado>
     Options +FollowSymLinks
@@ -145,7 +145,7 @@ Los ficheros .htaccess que residen en drectorios proporcionan el mismo resultado
     AuthUserFile "/etc/apache2/passwords"
 </Directory>
 ```
-+ Reiniciamos el servidor web+
++ **Reiniciamos el servidor web+**
     systemctl restart apache2
 
 #### Ficheros .htaccess ¿Para qué sirven?
