@@ -150,6 +150,12 @@ Los ficheros .htaccess que residen en drectorios proporcionan el mismo resultado
 
 #### Ficheros .htaccess ¿Para qué sirven?
 
+El archivo .htaccess es un archivo oculto que se utiliza para configurar funciones adicionales para sitios web alojados en el servidor web Apache.
+
+Estos permiten personalizar la configuración de directivas y parámetros que se definen en el fichero principal de configuración de Apache. Deben colocarse dentro de un directorio donde se pretende tenga efecto. Estos ficheros están protegidos desde la directiva del fichero principal, dando un 403 Forbidden en caso de acceder directamente a ellos.
+
+Su flexibilidad de configuración les proporciona alta probabilidad de usos incorrectos.
+
 ### ¿Cómo podemos evitar el hotlinking? 
 
 #### Configuración HTTPS mediante Let's Encrypt o OpenSSL. Crea los certificados para que tu virtualHost sea seguro, y obligatoriamente los accesos sean por HTTPS
