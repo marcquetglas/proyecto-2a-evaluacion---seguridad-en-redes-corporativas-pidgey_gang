@@ -23,15 +23,15 @@ rm index.html
 
 Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros que nos permiten configurar tanto de forma global como específica nuestro servidor:
 
-**apache2.conf:** Configuración principal des de donde se cargarán todos los ficheros necesarios cuando se inicie el servidor web.
++ **apache2.conf:** Configuración principal des de donde se cargarán todos los ficheros necesarios cuando se inicie el servidor web.
 
-**ports.conf:** Determina los puertos que escucha para las conexiones entrantes.
++ **ports.conf:** Determina los puertos que escucha para las conexiones entrantes.
 
-**mods-available, conf-available, sites-available:** Configuración específica para gestionar módulos, configuración global y hosts virtuales de forma separada.
++ **mods-available, conf-available, sites-available:** Configuración específica para gestionar módulos, configuración global y hosts virtuales de forma separada.
 
-**mods-enabled, conf-enabled, sites-enabled:** Enlaces simbólicos desde *-available (mods, conf y sites).
++ **mods-enabled, conf-enabled, sites-enabled:** Enlaces simbólicos desde *-available (mods, conf y sites).
 
-**envvars:** Contiene algunas variables de entorno usadas en apache2.conf.
++ **envvars:** Contiene algunas variables de entorno usadas en apache2.conf.
 
 #### Usuarios y grupos
 
@@ -45,7 +45,7 @@ Los valores de estas variables de entorno se establecen en /etc/apache2/envvars
 - export APACHE_RUN_USER=<usuario>
 - export APACHE_RUN_GROUP=<grupo>
 ```
-Por ejemplo www-data. Lo normal es que ya tengamos configurados estos valores con el Usuario y Grupo www-data, pero debemos verificarlo siempre.
+Por ejemplo *www-data*. Lo normal es que ya tengamos configurados estos valores con el Usuario y Grupo *www-data*, pero debemos verificarlo siempre.
 
 De esta manera al arrancar el servidor web lo hara con el usuario que le hayamos indicado, ya que si arrancamos el servidor con usuario privilegiado como root, corremos el riesgo de, ante un posible ataque exitoso, otorgar permisos de administrador al atacante.
 
@@ -121,19 +121,20 @@ Si navegamos a través de http://localhost/privado/ accederemos a modo índice w
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
-Nuestro directorio raíz es /var/www/html/
+Nuestro directorio raíz es */var/www/html/*
 
 "Directory" es la directiva que hemos definido para el recurso "privado" que se encuentra en el directorio raíz.
 
-Ahora si navegamos a través de http://localhost/privado/ nos mostrará un mensaje HTTP 403 Forbidden.
+Ahora si navegamos a través de *http://localhost/privado/* nos mostrará un mensaje HTTP 403 Forbidden.
 
-Los ficheros .htaccess que residen en drectorios proporcionan el mismo resultado
+Los ficheros *.htaccess* que residen en drectorios proporcionan el mismo resultado
 
 #### Restringiendo acceso al contenido: directiva Auth y Require. Aplica la configuración para autenticar el acceso mediante digest a uno de los directorios de tu virtualHost
 
 + **Creamos un usuario y contraseña**
-    
-    sudo htpasswd -c passwords albert
+```
+sudo htpasswd -c passwords albert
+```
 
 + **Añadimos directivas Auth***
 ```
@@ -148,12 +149,13 @@ Los ficheros .htaccess que residen en drectorios proporcionan el mismo resultado
 </Directory>
 ```
 + **Reiniciamos el servidor web+**
-
-    systemctl restart apache2
+```
+systemctl restart apache2
+```
 
 #### Ficheros .htaccess ¿Para qué sirven?
 
-El archivo .htaccess es un archivo oculto que se utiliza para configurar funciones adicionales para sitios web alojados en el servidor web Apache.
+El archivo ***.htaccess*** es un archivo oculto que se utiliza para configurar funciones adicionales para sitios web alojados en el servidor web Apache.
 
 Estos permiten personalizar la configuración de directivas y parámetros que se definen en el fichero principal de configuración de Apache. Deben colocarse dentro de un directorio donde se pretende tenga efecto. Estos ficheros están protegidos desde la directiva del fichero principal, dando un 403 Forbidden en caso de acceder directamente a ellos.
 
@@ -161,9 +163,9 @@ Su flexibilidad de configuración les proporciona alta probabilidad de usos inco
 
 ### ¿Cómo podemos evitar el hotlinking? 
 
-El hotlinking es una práctica empleada por propietarios de una página web para usar el contenido de otra página web, concretamente imágenes, vídeos o documentos alojados en la web de origen, sin pedir permiso, sin pagar licencias y empleando para ello el mínimo esfuerzo posible.
+El **hotlinking** es una práctica empleada por propietarios de una página web para usar el contenido de otra página web, concretamente imágenes, vídeos o documentos alojados en la web de origen, sin pedir permiso, sin pagar licencias y empleando para ello el mínimo esfuerzo posible.
 
-Afortunadamente, existen diferentes maneras para prevenir el hotlinking de los contenidos de nuestra web.
+Afortunadamente, existen diferentes maneras para prevenir el *hotlinking* de los contenidos de nuestra web.
 
 + Con un CDN que incluya Protección de Hotlinking
 + Permitiendo la Protección Hotlinking en Apache
@@ -177,9 +179,9 @@ Afortunadamente, existen diferentes maneras para prevenir el hotlinking de los c
 
 ### Módulo "mod_security" ¿Qué es mod_security?
 
-El mod_security es un módulo de seguridad de Apache, actúa como firewall de aplicaciones web (WAF) y su trabajo es filtrar y bloquear las solicitudes HTTP sospechosas, pudiendo bloquear ataques de fuerza bruta, vulnerabilidades de cross scripting (XSS), ataques por inyección SQL (SQLi), etc.
+El ***mod_security*** es un módulo de seguridad de Apache, actúa como firewall de aplicaciones web (WAF) y su trabajo es filtrar y bloquear las solicitudes HTTP sospechosas, pudiendo bloquear ataques de fuerza bruta, vulnerabilidades de cross scripting (XSS), ataques por inyección SQL (SQLi), etc.
 
-El mod_security está activo en todos nuestros servidores Linux por defecto. Aunque no es posible deshabilitarlo completamente por razones de seguridad, este módulo permite añadir excepciones mediante el fichero .htaccess en el caso de que trate de un falso positivo.
+El *mod_security* está activo en todos nuestros servidores Linux por defecto. Aunque no es posible deshabilitarlo completamente por razones de seguridad, este módulo permite añadir excepciones mediante el fichero *.htaccess* en el caso de que trate de un falso positivo.
 
 #### Realiza un ataque DoS mediante Metasploit (Slowloris) y comprueba que efectivamente el servidor está inaccesible
 
