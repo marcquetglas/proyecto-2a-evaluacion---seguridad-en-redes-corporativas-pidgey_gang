@@ -97,7 +97,41 @@ Cogiendo como ejemplo el /etc/apache2/sites-enabled/000-default.conf
 
 #### Configuración múltiple y contexto: directiva options
 
+Nuestro directorio raíz es /var/www/html
+
+La directova "Directory" se ha definido para el recurso "privado" que se encuentra en el directorio raíz.
+
+Si navegamos a través de http://localhost/privado/ accederemos a modo índice web a todos los ficheros.
+
+¿Como podemos evitar esto?
+    + Con la directiva "Options -Indexes"
+    + Deshabilitando el módulo autoindex
+
+```
+<VirtualHost *:80>
+    ServerName localhost
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+    <Directory /var/www/html/privado>
+        Options -indexes +FollowSymlinks
+        AllowOverride None
+    </Directory>
+    LogLevel info
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+Nuestro directorio raíz es /var/www/html/
+
+"Directory" es la directiva que hemos definido para el recurso "privado" que se encuentra en el directorio raíz.
+
+Ahora si navegamos a través de http://localhost/privado/ nos mostrará un mensaje HTTP 403 Forbidden.
+
+Los ficheros .htaccess que residen en drectorios proporcionan el mismo resultado
+
 #### Restringiendo acceso al contenido: directiva Auth y Require. Aplica la configuración para autenticar el acceso mediante digest a uno de los directorios de tu virtualHost
+
+
 
 #### Ficheros .htaccess ¿Para qué sirven?
 
