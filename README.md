@@ -174,9 +174,9 @@ Afortunadamente, existen diferentes maneras para prevenir el hotlinking de los c
 
 ### Módulo "mod_security" ¿Qué es mod_security?
 
-Es un módulo de seguridad de Apache, actúa como firewall de aplicaciones web (WAF) y su trabajo es filtrar y bloquear las solicitudes HTTP sospechosas, pudiendo bloquear ataques de fuerza bruta, vulnerabilidades de cross scripting (XSS), ataques por inyección SQL (SQLi), etc.
+El mod_security es un módulo de seguridad de Apache, actúa como firewall de aplicaciones web (WAF) y su trabajo es filtrar y bloquear las solicitudes HTTP sospechosas, pudiendo bloquear ataques de fuerza bruta, vulnerabilidades de cross scripting (XSS), ataques por inyección SQL (SQLi), etc.
 
-mod_security está activo en todos nuestros servidores Linux por defecto. Aunque no es posible deshabilitarlo completamente por razones de seguridad, este módulo permite añadir excepciones mediante el fichero .htaccess en el caso de que trate de un falso positivo.
+El mod_security está activo en todos nuestros servidores Linux por defecto. Aunque no es posible deshabilitarlo completamente por razones de seguridad, este módulo permite añadir excepciones mediante el fichero .htaccess en el caso de que trate de un falso positivo.
 
 #### Realiza un ataque DoS mediante Metasploit (Slowloris) y comprueba que efectivamente el servidor está inaccesible
 
