@@ -132,7 +132,9 @@ Los ficheros .htaccess que residen en drectorios proporcionan el mismo resultado
 #### Restringiendo acceso al contenido: directiva Auth y Require. Aplica la configuración para autenticar el acceso mediante digest a uno de los directorios de tu virtualHost
 
 + **Creamos un usuario y contraseña**
-    sodo htpasswd -c passwords albert
+    
+    sudo htpasswd -c passwords albert
+
 + **Añadimos directivas Auth***
 ```
 <Directory /var/www/html/privado>
@@ -146,6 +148,7 @@ Los ficheros .htaccess que residen en drectorios proporcionan el mismo resultado
 </Directory>
 ```
 + **Reiniciamos el servidor web+**
+
     systemctl restart apache2
 
 #### Ficheros .htaccess ¿Para qué sirven?
