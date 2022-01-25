@@ -79,6 +79,22 @@ Para consultar la lista de módulos, ya sean estáticos o dinámicos, disponemos
 
 ### Creación de virtualhost
 
+Cogiendo como ejemplo el /etc/apache2/sites-enabled/000-default.conf
+```
+<VirtualHost *:80>
+    ServerName localhost
+    ServerAdmin webmaster@localhost
+    DocumentRoot /var/www/html
+    <Directory /privado>
+        Options +FollowSymlinks
+        AllowOverride None
+    </Directory>
+    LogLevel info
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
+
 #### Configuración múltiple y contexto: directiva options
 
 #### Restringiendo acceso al contenido: directiva Auth y Require. Aplica la configuración para autenticar el acceso mediante digest a uno de los directorios de tu virtualHost
