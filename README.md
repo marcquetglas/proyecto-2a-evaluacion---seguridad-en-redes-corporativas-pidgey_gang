@@ -250,10 +250,6 @@ Afortunadamente, existen diferentes maneras para prevenir el *hotlinking* de los
 
 <br>
 
-#### Configuración HTTPS mediante Let's Encrypt o OpenSSL. Crea los certificados para que tu virtualHost sea seguro, y obligatoriamente los accesos sean por HTTPS
-
-<br>
-
 ### Módulo "mod_security" ¿Qué es mod_security?
 
 <br>
@@ -303,10 +299,6 @@ Para aplicar los cambios reiniciamos Apache2!
 
 <br>
 
-#### Realiza un ataque DoS mediante Metasploit (Slowloris) y comprueba que efectivamente el servidor está inaccesible
-
-<br>
-
 #### Clona e instala las reglas recomendadas OWASP. Habilita mod_security
 
 <br>
@@ -350,3 +342,5 @@ Contamos con varios recursos para evitar este tipo de ataques:
 + Limitar el acceso a la base de datos a sólo lo necesario
 
 ### Realiza de nuevo el ataque DoS y comprueba que el servidor está accesible
+#### Configuración HTTPS mediante Let's Encrypt o OpenSSL. Crea los certificados para que tu virtualHost sea seguro, y obligatoriamente los accesos sean por HTTPS
+#### Realiza un ataque DoS mediante Metasploit (Slowloris) y comprueba que efectivamente el servidor está inaccesible
