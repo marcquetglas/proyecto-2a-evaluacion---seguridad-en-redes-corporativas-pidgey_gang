@@ -226,13 +226,81 @@ Afortunadamente, existen diferentes maneras para prevenir el *hotlinking* de los
 
 El ***mod_security*** es un módulo de seguridad de Apache, actúa como firewall de aplicaciones web (WAF) y su trabajo es filtrar y bloquear las solicitudes HTTP sospechosas, pudiendo bloquear ataques de fuerza bruta, vulnerabilidades de cross scripting (XSS), ataques por inyección SQL (SQLi), etc.
 
-El *mod_security* está activo en todos nuestros servidores Linux por defecto. Aunque no es posible deshabilitarlo completamente por razones de seguridad, este módulo permite añadir excepciones mediante el fichero *.htaccess* en el caso de que trate de un falso positivo.
+Veámos como es la instalación del módulo para apache:
+
+```
+sudo apt install libapache2-mod-security2
+sudo a2enmod security2
+```
+
+Para verificar que el módulo ha cargado bien:
+
+```
+sudo apache2ctl -M | grep security
+``` 
+
+A continuación modificaremos la información recomendada renombrándola a *modsecurity.conf*
+y en esta modificaremos los dos valores:
+
+``` 
+sudo mv /etc/modsecurity/modsecurity.conf-recommended /etcmodsecurity/modsecurity.conf
+```
+
+Y modificamos:
+
+*SecRuleEngine On
+*SecResponseBodyAccess Off
+
+También disponemos de reglas en **/usr/share/modsecurity-crs/**, para habilitarlas creamos un enlace simbólico:
+
+```
+sudo ln -s /usr/share/modsecurity-crs/base_rules/*.conf /usr/share/modsecurity-crs/activated_rules/
+```
+
+A continuación las añadimos a **/etc/apache2/mods-enabled/security2.conf**:
+
+```
+IncludeOptional "/usr/share/modsecurity-crs/*.conf
+IncludeOptional "/usr/share/modsecurity-crs/rules/*.conf
+```
+
+Para aplicar los cambios reiniciamos Apache2!
+
+
+
 
 #### Realiza un ataque DoS mediante Metasploit (Slowloris) y comprueba que efectivamente el servidor está inaccesible
 
 
 
 #### Clona e instala las reglas recomendadas OWASP. Habilita mod_security
+
+Podemos descargar y clonar las reglas OWASP creadas por la comunidad para posteriormente moverlas a nuestro directorio de modsecurity lanzando los siguientes comandos:
+
+Clonamos:
+
+```
+sudo git clone https://github.com/SpiderLabs/owasp-modsecurity-crs.git
+```
+
+Y movemos las reglas:
+
+```
+sudo mv /usr/share/modsecurity-crs /usr/share/modsecurity-crs.copia
+sudo mv owasp-modsecurity-crs /usr/share/modsecurity-crs
+sudo mv /usr/share/modsecurity-crs/crs-setup.conf.example /usr/share/modsecurity-crs/crs-setup.conf
+```
+
+Para la configuración de estas debemos editar **/etc/apache2/mods-enabled/security2.conf** de este modo:
+
+```
+IncludeOptional /usr/share/modsecurity-crs/*.conf
+IncludeOptional /usr/share/modsecurity-crs/rules/*.conf
+```
+
+Reiniciamos de nuevo para aplicar los cambios
+
+
 
 ### Reglas para detectar SQLInjection
 
