@@ -343,5 +343,10 @@ Reiniciamos de nuevo para aplicar los cambios
 
 <br>
 
+Contamos con varios recursos para evitar este tipo de ataques:
+
++ Entradas Escape del usuario evitando los carácteres especiales
++ Usar declaraciones preparadas o plantillas para consultas 
++ Limitar el acceso a la base de datos a sólo lo necesario
 
 ### Realiza de nuevo el ataque DoS y comprueba que el servidor está accesible
