@@ -6,6 +6,8 @@
 
 ### Instalación Apache
 
+<br>
+
 En la terminal de nuestra máquina con Ubuntu, ejecutamos los siguientes comandos:
 
 ```
@@ -32,6 +34,9 @@ rm index.html
 
 ### Configuraciones globales
 
+<br>
+
+
 Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros que nos permiten configurar tanto de forma global como específica nuestro servidor:
 
 + **apache2.conf:** Configuración principal des de donde se cargarán todos los ficheros necesarios cuando se inicie el servidor web.
@@ -47,6 +52,9 @@ Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros q
 <br>
 
 #### Usuarios y grupos
+
+<br>
+
 
 Tenemos que configurar un usuario y grupo no provilegiado para el servidor web editando el fichero **/etc/apache2/apache2.conf** y buscand la parte de "User" y "Group".
 
@@ -72,6 +80,9 @@ Con un *ps auwwfx | grep apache* podemos ver el usuario que esta ejecutando el s
 
 #### Ocultación de versiones ¿Cuales son las fases de un ataque?
 
+<br>
+
+
 + **Reconocimiento:** el atacante busca información sobre la empresa. Generalmente, empieza a investigar los datos de la organización publica en abierto para tratar de averiguar qué tecnologías utiliza e interactuar con el correo electrónico y las redes sociales.
 
 + **Preparación:** el ciberdelincuente prepara su ataque hacia un objetivo específico.
@@ -92,6 +103,9 @@ En definitiva, la mejor forma de romper esta cadena es la concienciación en la 
 
 #### Exposición mínima de módulos
 
+<br>
+
+
 En Apache, los módulos pueden estar compilados estáticamente o cargqados de forma dinámica.
 
 Un módulo es una extensión que añade funcionalidad a través de la configuración en Apache, concretamente añadiendo directivas propias del módulo.
@@ -107,6 +121,9 @@ Para consultar la lista de módulos, ya sean estáticos o dinámicos, disponemos
 <br>
 
 ### Creación de virtualhost
+
+<br>
+
 
 Cogiendo como ejemplo el **/etc/apache2/sites-enabled/000-default.conf**
 
@@ -203,6 +220,9 @@ systemctl restart apache2
 
 #### Ficheros .htaccess ¿Para qué sirven?
 
+<br>
+
+
 El archivo ***.htaccess*** es un archivo oculto que se utiliza para configurar funciones adicionales para sitios web alojados en el servidor web Apache.
 
 Estos permiten personalizar la configuración de directivas y parámetros que se definen en el fichero principal de configuración de Apache. Deben colocarse dentro de un directorio donde se pretende tenga efecto. Estos ficheros están protegidos desde la directiva del fichero principal, dando un 403 Forbidden en caso de acceder directamente a ellos.
@@ -212,6 +232,9 @@ Su flexibilidad de configuración les proporciona alta probabilidad de usos inco
 <br>
 
 ### ¿Cómo podemos evitar el hotlinking? 
+
+<br>
+
 
 El **hotlinking** es una práctica empleada por propietarios de una página web para usar el contenido de otra página web, concretamente imágenes, vídeos o documentos alojados en la web de origen, sin pedir permiso, sin pagar licencias y empleando para ello el mínimo esfuerzo posible.
 
@@ -232,6 +255,9 @@ Afortunadamente, existen diferentes maneras para prevenir el *hotlinking* de los
 <br>
 
 ### Módulo "mod_security" ¿Qué es mod_security?
+
+<br>
+
 
 El ***mod_security*** es un módulo de seguridad de Apache, actúa como firewall de aplicaciones web (WAF) y su trabajo es filtrar y bloquear las solicitudes HTTP sospechosas, pudiendo bloquear ataques de fuerza bruta, vulnerabilidades de cross scripting (XSS), ataques por inyección SQL (SQLi), etc.
 
@@ -283,6 +309,9 @@ Para aplicar los cambios reiniciamos Apache2!
 
 #### Clona e instala las reglas recomendadas OWASP. Habilita mod_security
 
+<br>
+
+
 Podemos descargar y clonar las reglas OWASP creadas por la comunidad para posteriormente moverlas a nuestro directorio de modsecurity lanzando los siguientes comandos:
 
 Clonamos:
@@ -311,5 +340,8 @@ Reiniciamos de nuevo para aplicar los cambios
 
 
 ### Reglas para detectar SQLInjection
+
+<br>
+
 
 ### Realiza de nuevo el ataque DoS y comprueba que el servidor está accesible
