@@ -1,12 +1,8 @@
-## Hardening básico Apache
+## HARDENING BÁSICO APACHE2
 
 #### By INCIBE
 
-<br>
-
 ### Instalación Apache
-
-<br>
 
 En la terminal de nuestra máquina con Ubuntu, ejecutamos los siguientes comandos:
 
@@ -29,13 +25,7 @@ Lo primero que deberemos hacer es acceder a la ruta /var/www/html y eliminaremos
 cd /var/www/html
 rm index.html
 ```
-
-<br>
-
 ### Configuraciones globales
-
-<br>
-
 
 Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros que nos permiten configurar tanto de forma global como específica nuestro servidor:
 
@@ -49,12 +39,7 @@ Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros q
 
 + **envvars:** Contiene algunas variables de entorno usadas en apache2.conf.
 
-<br>
-
 #### Usuarios y grupos
-
-<br>
-
 
 Tenemos que configurar un usuario y grupo no provilegiado para el servidor web editando el fichero **/etc/apache2/apache2.conf** y buscand la parte de "User" y "Group".
 
@@ -76,12 +61,7 @@ De esta manera al arrancar el servidor web lo hara con el usuario que le hayamos
 
 Con un *ps auwwfx | grep apache* podemos ver el usuario que esta ejecutando el servicio Apache.
 
-<br>
-
 #### Ocultación de versiones ¿Cuales son las fases de un ataque?
-
-<br>
-
 
 + **Reconocimiento:** el atacante busca información sobre la empresa. Generalmente, empieza a investigar los datos de la organización publica en abierto para tratar de averiguar qué tecnologías utiliza e interactuar con el correo electrónico y las redes sociales.
 
@@ -99,12 +79,7 @@ Con un *ps auwwfx | grep apache* podemos ver el usuario que esta ejecutando el s
 
 En definitiva, la mejor forma de romper esta cadena es la concienciación en la empresa, la formación del personal y contar con las soluciones de seguridad adecuadas. De esta manera se eliminará la vulnerabilidad y será mucho más segura.
 
-<br>
-
 #### Exposición mínima de módulos
-
-<br>
-
 
 En Apache, los módulos pueden estar compilados estáticamente o cargqados de forma dinámica.
 
@@ -118,12 +93,7 @@ Para activar o desactivar módulos usaremos en línia de comandos las utilidades
 
 Para consultar la lista de módulos, ya sean estáticos o dinámicos, disponemos en línia de comandos de apache2ctl con el argumento -M mayúscula. Seguido de recargar la configuración con "sudo systemctl reload apache2" para que los cambios aplicatos tengan efecto.
 
-<br>
-
 ### Creación de virtualhost
-
-<br>
-
 
 Cogiendo como ejemplo el **/etc/apache2/sites-enabled/000-default.conf**
 
@@ -141,8 +111,6 @@ Cogiendo como ejemplo el **/etc/apache2/sites-enabled/000-default.conf**
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
-
-<br>
 
 #### Configuración múltiple y contexto: directiva options
 
@@ -179,22 +147,14 @@ Ahora si navegamos a través de *http://localhost/privado/* nos mostrará un men
 
 Los ficheros *.htaccess* que residen en drectorios proporcionan el mismo resultado
 
-<br>
-
 #### Restringiendo acceso al contenido: directiva Auth y Require. Aplica la configuración para autenticar el acceso mediante digest a uno de los directorios de tu virtualHost
-
-<br>
 
 + **Creamos un usuario y contraseña**
 
 ```
 sudo htpasswd -c passwords albert
 ```
-
-<br>
-
 + **Añadimos directivas Auth**
-
 ```
 <Directory /var/www/html/privado>
     Options +FollowSymLinks
@@ -205,23 +165,13 @@ sudo htpasswd -c passwords albert
     AuthBasicProvider file
     AuthUserFile "/etc/apache2/passwords"
 </Directory>
-
 ```
-
-<br>
-
 + **Reiniciamos el servidor web+**
-
 ```
 systemctl restart apache2
 ```
 
-<br>
-
 #### Ficheros .htaccess ¿Para qué sirven?
-
-<br>
-
 
 El archivo ***.htaccess*** es un archivo oculto que se utiliza para configurar funciones adicionales para sitios web alojados en el servidor web Apache.
 
@@ -229,12 +179,7 @@ Estos permiten personalizar la configuración de directivas y parámetros que se
 
 Su flexibilidad de configuración les proporciona alta probabilidad de usos incorrectos.
 
-<br>
-
 ### ¿Cómo podemos evitar el hotlinking? 
-
-<br>
-
 
 El **hotlinking** es una práctica empleada por propietarios de una página web para usar el contenido de otra página web, concretamente imágenes, vídeos o documentos alojados en la web de origen, sin pedir permiso, sin pagar licencias y empleando para ello el mínimo esfuerzo posible.
 
@@ -248,48 +193,39 @@ Afortunadamente, existen diferentes maneras para prevenir el *hotlinking* de los
 + Renombrando archivos
 + En la configuración de nuestro cPanel
 
-<br>
-
 ### Módulo "mod_security" ¿Qué es mod_security?
-
-<br>
-
 
 El ***mod_security*** es un módulo de seguridad de Apache, actúa como firewall de aplicaciones web (WAF) y su trabajo es filtrar y bloquear las solicitudes HTTP sospechosas, pudiendo bloquear ataques de fuerza bruta, vulnerabilidades de cross scripting (XSS), ataques por inyección SQL (SQLi), etc.
 
 Veámos como es la instalación del módulo para apache:
-
 ```
 sudo apt install libapache2-mod-security2
 sudo a2enmod security2
 ```
 
 Para verificar que el módulo ha cargado bien:
-
 ```
 sudo apache2ctl -M | grep security
 ``` 
 
 A continuación modificaremos la información recomendada renombrándola a *modsecurity.conf*
 y en esta modificaremos los dos valores:
-
 ``` 
 sudo mv /etc/modsecurity/modsecurity.conf-recommended /etcmodsecurity/modsecurity.conf
 ```
 
 Y modificamos:
-
-*SecRuleEngine On
-*SecResponseBodyAccess Off
+```
+SecRuleEngine On
+SecResponseBodyAccess Off
+```
 
 También disponemos de reglas en **/usr/share/modsecurity-crs/**, para habilitarlas creamos un enlace simbólico:
-
 ```
 sudo ln -s /usr/share/modsecurity-crs/base_rules/*.conf /usr/share/modsecurity-crs/activated_rules/
 ```
 
 A continuación las añadimos a **/etc/apache2/mods-enabled/security2.conf**:
-
 ```
 IncludeOptional "/usr/share/modsecurity-crs/*.conf
 IncludeOptional "/usr/share/modsecurity-crs/rules/*.conf
@@ -297,23 +233,16 @@ IncludeOptional "/usr/share/modsecurity-crs/rules/*.conf
 
 Para aplicar los cambios reiniciamos Apache2!
 
-<br>
-
 #### Clona e instala las reglas recomendadas OWASP. Habilita mod_security
-
-<br>
-
 
 Podemos descargar y clonar las reglas OWASP creadas por la comunidad para posteriormente moverlas a nuestro directorio de modsecurity lanzando los siguientes comandos:
 
 Clonamos:
-
 ```
 sudo git clone https://github.com/SpiderLabs/owasp-modsecurity-crs.git
 ```
 
 Y movemos las reglas:
-
 ```
 sudo mv /usr/share/modsecurity-crs /usr/share/modsecurity-crs.copia
 sudo mv owasp-modsecurity-crs /usr/share/modsecurity-crs
@@ -321,7 +250,6 @@ sudo mv /usr/share/modsecurity-crs/crs-setup.conf.example /usr/share/modsecurity
 ```
 
 Para la configuración de estas debemos editar **/etc/apache2/mods-enabled/security2.conf** de este modo:
-
 ```
 IncludeOptional /usr/share/modsecurity-crs/*.conf
 IncludeOptional /usr/share/modsecurity-crs/rules/*.conf
@@ -329,11 +257,7 @@ IncludeOptional /usr/share/modsecurity-crs/rules/*.conf
 
 Reiniciamos de nuevo para aplicar los cambios
 
-
-
 ### Reglas para detectar SQLInjection
-
-<br>
 
 Contamos con varios recursos para evitar este tipo de ataques:
 
