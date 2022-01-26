@@ -20,14 +20,20 @@ service apache2 status
 E incluso podemos introducir la dirección IP de nuestra máquina en el buscador, de esta manera veremos la página de Apache por defecto (index.html).
 
 Lo primero que deberemos hacer es acceder a la ruta /var/www/html y eliminaremos el fichero index.html, ya que esta página incluye rutas y configuraciones que exponen nuestra configuración tanto de sistema operativo como de servidor web
-
 ```
 cd /var/www/html
 rm index.html
 ```
+
+O en su defecto, también podemos modificar el contenido del fichero, de tal manera que borremos los datos que este exponía.
+```
+sudo nano inde.html
+```
+E introducimos el contenido que queramos.
+
 ### Configuraciones globales
 
-Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros que nos permiten configurar tanto de forma global como específica nuestro servidor:
+Dentro del directorio */etc/apache2* encontraremos varios directorios y ficheros que nos permiten configurar tanto de forma global como específica nuestro servidor:
 
 + **apache2.conf:** Configuración principal des de donde se cargarán todos los ficheros necesarios cuando se inicie el servidor web.
 
@@ -65,6 +71,12 @@ Con un *ps auwwfx | grep apache* podemos ver el usuario que esta ejecutando el s
 
 + **Reconocimiento:** el atacante busca información sobre la empresa. Generalmente, empieza a investigar los datos de la organización publica en abierto para tratar de averiguar qué tecnologías utiliza e interactuar con el correo electrónico y las redes sociales.
 
+Para hacer lo más díficil posible recibir un ataque capaz de sacar información, podemos ocultar la versión del servidor web accediendo a la ruta */etc/apache2/conf-enabled* y añadiendo al fichero *security.conf* las siguientes línias:
+```
+ServerTokens Prod
+ServerSignature Off
+```
+
 + **Preparación:** el ciberdelincuente prepara su ataque hacia un objetivo específico.
 
 + **Distribución:** en esta fase se produce la transmisión del ciberataque. De nuevo, la formación de los trabajadores y el conocimiento de estas técnicas es la mejor forma de prevenirlo.
@@ -87,16 +99,34 @@ Un módulo es una extensión que añade funcionalidad a través de la configurac
 
 En instalaciones por defecto es habitual encontrar módulos activos que no se usan o no nos insteresan.
 
-Siempre es recomendable desactivar cualquier módulo que no esté en uso. Reducirá la carga y la superfície de exposición de un ataque.
+Siempre es recomendable desactivar cualquier módulo que no esté en uso, esto reducirá la carga y la superfície de exposición de un ataque.
 
 Para activar o desactivar módulos usaremos en línia de comandos las utilidades a2dismod y a2enmod añadiendo como argumento el nombre del módulo.
 
 Para consultar la lista de módulos, ya sean estáticos o dinámicos, disponemos en línia de comandos de apache2ctl con el argumento -M mayúscula. Seguido de recargar la configuración con "sudo systemctl reload apache2" para que los cambios aplicatos tengan efecto.
+```
+#Mostrar módulos
+apache2ctl -M
+
+#Activar módulo
+a2denmod nombre_módulo
+
+#Desactivar módulo
+a2dismod nombre_módulo
+
+#Reiniciar apache
+service apache2 restart
+```
 
 ### Creación de virtualhost
 
-Cogiendo como ejemplo el **/etc/apache2/sites-enabled/000-default.conf**
+Para generar un Virtualhost debemos crear un archivo en la ruta */etc/apache2/sites-available* y ejecutando luego el siguiente comando:
+```
+a2ensite nombre_vhost
+service apache2 restart
+```
 
+Y cogiendo como ejemplo el **/etc/apache2/sites-enabled/000-default.conf**, podemos crear el siguiente Virtualhost:
 ```
 <VirtualHost *:80>
     ServerName localhost
@@ -149,12 +179,16 @@ Los ficheros *.htaccess* que residen en drectorios proporcionan el mismo resulta
 
 #### Restringiendo acceso al contenido: directiva Auth y Require. Aplica la configuración para autenticar el acceso mediante digest a uno de los directorios de tu virtualHost
 
-+ **Creamos un usuario y contraseña**
++ Crear fichero y definir usuario
+```
+htdigest -c fichero grupo admin
+```
 
++ Agregar usuario a fichero
 ```
-sudo htpasswd -c passwords albert
+htdigest fichero grupo admin
 ```
-+ **Añadimos directivas Auth**
+
 ```
 <Directory /var/www/html/privado>
     Options +FollowSymLinks
@@ -266,5 +300,7 @@ Contamos con varios recursos para evitar este tipo de ataques:
 + Limitar el acceso a la base de datos a sólo lo necesario
 
 ### Realiza de nuevo el ataque DoS y comprueba que el servidor está accesible
+
 #### Configuración HTTPS mediante Let's Encrypt o OpenSSL. Crea los certificados para que tu virtualHost sea seguro, y obligatoriamente los accesos sean por HTTPS
+
 #### Realiza un ataque DoS mediante Metasploit (Slowloris) y comprueba que efectivamente el servidor está inaccesible
