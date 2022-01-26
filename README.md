@@ -166,11 +166,15 @@ Los ficheros *.htaccess* que residen en drectorios proporcionan el mismo resulta
 
 #### Restringiendo acceso al contenido: directiva Auth y Require. Aplica la configuración para autenticar el acceso mediante digest a uno de los directorios de tu virtualHost
 
+<br>
+
 + **Creamos un usuario y contraseña**
 
 ```
 sudo htpasswd -c passwords albert
 ```
+
+<br>
 
 + **Añadimos directivas Auth**
 
@@ -186,6 +190,9 @@ sudo htpasswd -c passwords albert
 </Directory>
 
 ```
+
+<br>
+
 + **Reiniciamos el servidor web+**
 
 ```
@@ -201,6 +208,8 @@ El archivo ***.htaccess*** es un archivo oculto que se utiliza para configurar f
 Estos permiten personalizar la configuración de directivas y parámetros que se definen en el fichero principal de configuración de Apache. Deben colocarse dentro de un directorio donde se pretende tenga efecto. Estos ficheros están protegidos desde la directiva del fichero principal, dando un 403 Forbidden en caso de acceder directamente a ellos.
 
 Su flexibilidad de configuración les proporciona alta probabilidad de usos incorrectos.
+
+<br>
 
 ### ¿Cómo podemos evitar el hotlinking? 
 
@@ -266,12 +275,11 @@ IncludeOptional "/usr/share/modsecurity-crs/rules/*.conf
 
 Para aplicar los cambios reiniciamos Apache2!
 
-
-
+<br>
 
 #### Realiza un ataque DoS mediante Metasploit (Slowloris) y comprueba que efectivamente el servidor está inaccesible
 
-
+<br>
 
 #### Clona e instala las reglas recomendadas OWASP. Habilita mod_security
 
