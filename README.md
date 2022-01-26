@@ -1,25 +1,34 @@
-## Hardening Apache
+## Hardening básico Apache
+
+#### By INCIBE
 
 <br>
 
 ### Instalación Apache
 
 En la terminal de nuestra máquina con Ubuntu, ejecutamos los siguientes comandos:
+
 ```
 apt-get update
 apt-get install apache2
 ```
+
 Podemos comprobar que tenemos el servicio Apache funcionando con:
+
 ```
 service apache2 status
 ```
+
 E incluso podemos introducir la dirección IP de nuestra máquina en el buscador, de esta manera veremos la página de Apache por defecto (index.html).
 
 Lo primero que deberemos hacer es acceder a la ruta /var/www/html y eliminaremos el fichero index.html, ya que esta página incluye rutas y configuraciones que exponen nuestra configuración tanto de sistema operativo como de servidor web
+
 ```
 cd /var/www/html
 rm index.html
 ```
+
+<br>
 
 ### Configuraciones globales
 
@@ -34,6 +43,8 @@ Dentro del directorio /etc/apache2 encontraremos varios directorios y ficheros q
 + **mods-enabled, conf-enabled, sites-enabled:** Enlaces simbólicos desde *-available (mods, conf y sites).
 
 + **envvars:** Contiene algunas variables de entorno usadas en apache2.conf.
+
+<br>
 
 #### Usuarios y grupos
 
