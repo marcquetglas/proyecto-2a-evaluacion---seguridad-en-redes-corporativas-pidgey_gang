@@ -77,7 +77,8 @@ Además, la partición /home se debe configurar con el modificador nodev y se de
 #### Configuración de red
 Vamos a partir de la premisa de que nuestro servidor no va a tener funciones de router y va a estar en una red IPv4.
 
-Las configuraciones se van a centrar sobre todo en no permitir que el servidor actúe como enrutador de tráfico y en verificar el origen y destino de la comunicación, 
+Las configuraciones se van a centrar sobre todo en no permitir que el servidor actúe como enrutador de tráfico y en verificar el origen y destino de la comunicación, así como en registrar las acciones que puedan ser sospechosas de ser algún tipo de ataque.
+29:40
 
 ### Escaneo de vulnerabilidades mediante Nessus
 
