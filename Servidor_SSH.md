@@ -37,8 +37,8 @@ sysremctl start systemd-timesyncd.service
 ```
 
 #### Servicios a desinstalar
-+ ***X Windows System:*** sistema gráfico de ventanas típico de cualquier sistema de escritorio.
-+ ***Avahi:*** sistema de descubrimiento de nuevos servicios en la red.
++ ***X Windows System***: sistema gráfico de ventanas típico de cualquier sistema de escritorio.
++ ***Avahi***: sistema de descubrimiento de nuevos servicios en la red.
 
 Ambos servicion no vienen instalados por defecto, por lo que si no los hemos instalado previamente no netesitamos realizar ninguna acción adicional. En casop de haberlos instalados, para desinstalarlos debemos ejecutar:
 ```
