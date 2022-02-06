@@ -80,6 +80,14 @@ Vamos a partir de la premisa de que nuestro servidor no va a tener funciones de 
 Las configuraciones se van a centrar sobre todo en no permitir que el servidor actúe como enrutador de tráfico y en verificar el origen y destino de la comunicación, así como en registrar las acciones que puedan ser sospechosas de ser algún tipo de ataque.
 29:40
 
+#### Configuración del firewall
+
+
+#### Actualizaciones de software
+
+
+
+
 ### Escaneo de vulnerabilidades mediante Nessus
 
 
